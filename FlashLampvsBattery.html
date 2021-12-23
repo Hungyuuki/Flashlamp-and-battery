@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    //Khai báo class Battery//
+    class Battery{
+        _energy;
+        constructor(energy){
+        this._energy=energy;
+        };
+        setEnergy(value){
+            this._energy=value;
+        };
+        getEnergy(){
+            return this._energy
+        };
+        decreaseEnergy(){
+            if (this._energy > 0){
+                this._energy--;
+            }
+        }
+    }
+        //Khai báo class FlashLamp*//
+    class FlashLamp {
+        _battery;
+        _status;
+        constructor(battery,status) {
+            this._battery = battery;
+            this._status = status;
+        }
+        setBattery (battery) {
+            this._battery = battery;
+        };
+        getBatteryInfo() {
+            return this._battery.getEnergy()
+        }
+        light (){
+            if(this._status){
+                alert("Lightning");
+            }
+            else {alert("Not Lightning")
+            }
+            this._battery.decreaseEnergy();
+        }
+        turnOn(){
+            this._status=true;
+            this._battery.decreaseEnergy();
+        };
+        turnOff(){
+            this._status=false
+            this._battery.decreaseEnergy();
+        }
+    }
+
+    /*thử nghiệm*/
+    let battery = new Battery();
+    battery.setEnergy(10);
+    let flashLamp = new FlashLamp();
+    flashLamp.setBattery(battery);
+
+    document.write("Battery info:" + flashLamp.getBatteryInfo() + "<br/>");
+    flashLamp.light();
+
+    document.write("Turn on<br/>")
+    flashLamp.turnOn();
+    flashLamp.light();
+    document.write("Battery info:" + flashLamp.getBatteryInfo() + "<br/>");
+
+    document.write("Turn off<br/>")
+    flashLamp.turnOff();
+    flashLamp.light();
+</script>
+</body>
+</html>
